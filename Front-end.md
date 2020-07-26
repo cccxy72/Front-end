@@ -1,5 +1,9 @@
 # 前端开发
 
+[TOC]
+
+
+
 ## 前端开发语言
 
 * HTML 超文本标记语言 --- 结构
@@ -569,6 +573,7 @@ value可以使某些表单元素刚打开就默认显示几个文字。
 ```
 
 
+
 ##### `<label>`标签 
 
 `<label>`标签为input元素定义标注（标签）。
@@ -579,6 +584,171 @@ value可以使某些表单元素刚打开就默认显示几个文字。
 <label for="sex">男</label>
 <input type="radio" name="sex" id="sex" />
 ```
+
+`<label>`标签的for属性应当与相关元素的id属性相同。
+
+
+
+##### `<select>`表单元素
+
+我们可以用`<select>`标签控件定义下拉列表。
+
+```html
+<select>
+    <option>选项1</option>
+    <option>选项2</option>
+    <option>选项3</option>
+</select>
+```
+
+`<select>`中至少包含一对`<option>`。
+
+在`<select>`中定义 selected=“selected” 时，当前项即为默认选中项。
+
+
+
+##### `<textarea>`表单元素
+
+当输入内容较多时，可以用`<textarea>`文本域标签，可以定义多行文本输入。
+
+```html
+<textarea rows="3" cols="20">
+    文本内容
+</textarea>
+```
+
+
+
+#### 综合案例
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>综合案例注册页面</title>
+</head>
+<body>
+    <h4>青春不常在，抓紧学编程</h4>
+    <table width="600">
+        <!--第一行-->
+        <tr>
+            <td>性别：</td>
+            <td>
+                <input type="radio" name="sex" id="man"><label for="man">男</label>&nbsp;
+                <input type="radio" name="sex" id="woman"><label for="woman">女</label>
+            </td>
+        </tr>
+        <!--第二行-->
+        <tr>
+            <td>生日：</td>
+            <td>
+                <select>
+                    <option>--请选择年份--</option>
+                    <option>2000</option>
+                    <option>2001</option>
+                    <option>2002</option>
+                    <option>2003</option>
+                    <option>2004</option>
+                    <option>2005</option>
+                </select>
+                <select>
+                    <option>--请选择月份--</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
+                <select>
+                    <option>--请选择日期--</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
+            </td>
+        </tr>
+        <!--第三行-->
+        <tr>
+            <td>所在学校</td>
+            <td>
+                <input type="text" value="请输入在读学校">
+            </td>
+        </tr>
+        <!--第四行-->
+        <tr>
+            <td>专业：</td>
+            <td><input type="radio" name="major" checked="checked" id="jk"><label for="jk">计科</label> 
+                <input type="radio" name="major" id="rg"><label for="rg">软工</label> 
+                <input type="radio" name="major" id="dsj"><label for="dsj">大数据 </label>
+                <input type="radio" name="major" id="wlw"><label for="wlw">物联网</label>
+            </td>
+        </tr>
+        <!--第五行-->
+        <tr>
+            <td>在读年级:</td>
+            <td>
+                <input type="text" value="请输入在读年级">
+            </td>
+        </tr>
+        <!--第六行-->
+        <tr>
+            <td>学习方向：</td>
+            <td>
+                <input type="checkbox" name="direction" checked="checked">前端开发
+                <input type="checkbox" name="direction">人工智能
+                <input type="checkbox" name="direction">游戏设计
+            </td>
+        </tr>
+        <!--第七行-->
+        <tr>
+            <td>个人介绍</td>
+            <td>
+                <textarea>个人简介</textarea>
+            </td>
+        </tr>
+        <!--第八行-->
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="注册">
+            </td>
+        </tr>
+        <!--第九行-->
+        <tr>
+            <td></td>
+            <td>
+                <input type="checkbox" checked="checked">我同意注册条款和会员加入标准
+            </td>
+        </tr>
+        <!--第十行-->
+        <tr>
+            <td></td>
+            <td>
+                <a href="#">我是会员，立即登录</a>
+            </td>
+        </tr>
+        <!--第十一行-->
+        <tr>
+            <td></td>
+            <td>
+                <h5>我承诺</h5>
+                <ul>
+                    <li>信息属实</li>
+                    <li>认真学习</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+```
+
 
 
 -----
