@@ -754,3 +754,394 @@ value可以使某些表单元素刚打开就默认显示几个文字。
 -----
 
 ## CSS
+
+CSS是层叠样式表的简称。
+
+CSS也是一种标记语言。主要用于设置HTML页面中的文本内容（字体、大小、对齐）、图片的外形（宽高、边框样式、边距等）以及版面的布局和外观显示样式。
+
+由HTML专注去做结构呈现，样式交给CSS，结构（HTML）与样式（CSS）相分离。
+
+<u>CSS规则由两个主要的部分构成：选择器以及一条或多条声明。</u>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS语法规范</title>
+    <style>
+        /* 选择器{样式} */
+        /* 给谁改样式{改什么样式} */
+        p {
+            color: red;
+            /* 修改了文字大小为12像素 */
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <p>有点意思</p>
+</body>
+</html>
+```
+
+* 属性和属性值以“键值对”的形式出现
+* 属性是对指定的对象设置的样式属性，如字体大小、文本颜色
+* 属性和属性值之间用英文“:”分开
+* 多个键值对之间用“;”进行区分
+
+
+
+### CSS代码风格
+
+样式格式书写：
+
+紧凑格式
+
+```html
+h3 { color: deeppink;font-size: 20px;}
+```
+
+展开格式
+
+```html
+h3 { 
+   color: deeppink;
+   font-size: 20px;
+}
+```
+
+样式大小写风格：
+
+选择小写。
+
+样式空格风格：
+
+```html
+h3 {
+   color: pink;
+}
+```
+
+* 属性值前面，冒号后面保留一个空格
+* 选择器（标签）和大括号中间保留空格
+
+
+
+### CSS基础选择器
+
+选择器就是根据不同需求把不同的标签选出来，简单来说就是选择标签用的。
+
+选择器分为<u>基础选择器</u>和<u>复合选择器</u>两个大类。
+
+* 基础选择器是由单个选择器组成的
+* 基础选择器又包括：标签选择器、类选择器、id选择器和通配符选择器
+
+
+
+#### 标签选择器
+
+标签选择器（元素选择器）是指用HTML标签作为选择器，按标签名称分类，为页面中某一类标签指定统一的CSS样式。
+
+```html
+标签名 {
+     属性1: 属性值1;
+     属性2: 属性值2;
+     属性3: 属性值3;
+     ···
+}
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础选择器之标签选择器</title>
+    <style>
+        /* 标签选择器 ： 写上标签名 */
+        p {
+            color: green;
+        }
+        div {
+            color: pink;
+        }
+    </style>
+</head>
+<body>
+    <p>男生</p>
+    <p>男生</p>
+    <p>男生</p>
+    <div>女生</div>
+    <div>女生</div>
+    <div>女生</div>
+</body>
+</html>
+```
+
+标签选择器可以把某一类标签全部选择出来，比如所有的`<div>`标签和所有的`<span>`标签。
+
+
+
+#### 类选择器
+
+单独选一个或者几个标签，可以使用类选择器。
+
+```html
+.类名 {
+     属性1: 属性值1;
+     ···
+}
+```
+
+例如，将所有拥有red类的HTML元素均为红色：
+
+```html
+.red {
+    color: red;
+}
+```
+
+结构需要用**class属性**来调用class类对的意思。
+
+```html
+<div class="red">变红色</div>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础选择器之类选择器</title>
+    <style>
+        /* 类选择器口诀：样式点定义 结构类调用 一个或多个 开发最常用 */
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="red">陈</li>
+        <li class="red">写</li>
+        <li>意</li>
+    </ul>
+</body>
+</html>
+```
+
+* 类选择器使用“.”（英文点号）进行标识，后面紧跟类名（自定义，我们自己命名）
+* 长名称或者词组可以使用横线来为选择器命名
+* 不要使用纯数字、中文等命名，尽量使用英文字母表示
+* 命名要有意义，尽量使别人一眼就知道这个类名的目的
+
+**类命名规范：**
+
+ 头：header 
+
+ 内容：content/container
+
+ 尾：footer
+
+ 导航：nav  
+
+ 侧栏：sidebar
+
+ 栏目：column
+
+ 页面外围控制整体布局宽度：wrapper
+
+ 左右中：left right center
+
+ 登录条：loginbar
+
+ 标志：logo
+
+ 广告：banner
+
+ 页面主体：main
+
+ 热点：hot
+
+ 新闻：news
+
+ 下载：download
+
+ 子导航：subnav
+
+ 菜单：menu
+
+ 子菜单：submenu
+
+ 搜索：search
+
+ 友情链接：friendlink
+
+ 页脚：footer
+
+ 版权：copyright
+
+ 滚动：scroll
+
+ 内容：content
+
+ 标签页：tab
+
+ 文章列表：list
+
+ 提示信息：msg
+
+ 小技巧：tips
+
+ 栏目标题：title
+
+ 加入：joinus
+
+ 指南：guild
+
+ 服务：service
+
+ 注册：regsiter
+
+ 状态：status
+
+ 投票：vote
+
+ 合作伙伴：partner
+
+**(二)注释的写法:**
+
+ /* Footer */
+
+ 内容区
+
+ /* End Footer */
+
+**(三)id的命名:**
+
+ **(1)页面结构**
+
+ 容器: container
+
+ 页头：header
+
+ 内容：content/container
+
+ 页面主体：main
+
+ 页尾：footer
+
+ 导航：nav
+
+ 侧栏：sidebar
+
+ 栏目：column
+
+ 页面外围控制整体布局宽度：wrapper
+
+ 左右中：left right center
+
+ **(2)导航**
+
+ 导航：nav
+
+ 主导航：mainbav
+
+ 子导航：subnav
+
+ 顶导航：topnav
+
+ 边导航：sidebar
+
+ 左导航：leftsidebar
+
+ 右导航：rightsidebar
+
+ 菜单：menu
+
+ 子菜单：submenu
+
+ 标题: title
+
+ 摘要: summary
+
+ **(3)功能**
+
+ 标志：logo
+
+ 广告：banner
+
+ 登陆：login
+
+ 登录条：loginbar
+
+ 注册：regsiter
+
+ 搜索：search
+
+ 功能区：shop
+
+ 标题：title
+
+ 加入：joinus
+
+ 状态：status
+
+ 按钮：btn
+
+ 滚动：scroll
+
+ 标签页：tab
+
+ 文章列表：list
+
+ 提示信息：msg
+
+ 当前的: current
+
+ 小技巧：tips
+
+ 图标: icon
+
+ 注释：note
+
+ 指南：guild
+
+ 服务：service
+
+ 热点：hot
+
+ 新闻：news
+
+ 下载：download
+
+ 投票：vote
+
+ 合作伙伴：partner
+
+ 友情链接：link
+
+ 版权：copyright\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
