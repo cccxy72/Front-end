@@ -1537,6 +1537,8 @@ p {
 <link rel="stylesheet" href="css文件路径">
 ```
 
+![image-20200806160850409](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200806160850409.png)
+
 
 
 #### CSS引入方式总结
@@ -1551,25 +1553,607 @@ p {
 
 ### 综合案例
 
+html文件：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>北方高温明日达鼎盛 京津冀多地地表温度将超60℃</h1>
+    <div class="gray">2019-07-03 16:31:47 来源: <a href="#">中国天气网　</a>  
+    <input type="text" value="请输入查询条件" class="search">  <button class="btn">搜索</button>
+</div>
+    <hr>
+
+    <p>中国天气网讯 今天（3日），华北、黄淮多地出现高温天气，截至下午2点，北京、天津、郑州等地气温突破35℃。
+    预报显示，今后三天（3-5日），这一带的高温天气将继续发酵，
+    高温范围以及强度将在4日达到鼎盛，预计北京、天津、石家庄、济南等地明天的最高气温有望突破38℃，
+    其中北京和石家庄的最高气温还有望创今年以来的新高。</p>
+    
+    <h4>气温41.4℃！地温66.5！北京强势迎七月首个高温日</h4>
+    
+    <p><img src="image/pic.jpeg" alt=""></p>
+
+    <p>今天，华北、黄淮一带的高温持续发酵，截至今天下午2点，陕西北部、山西西南部、河北南部、北京、天津、
+    山东西部、河南北部最高气温已普遍超过35℃。大城市中，北京、天津、郑州均迎来高温日。</p>
+    
+    <p>在阳光暴晒下，地表温度也逐渐走高。今天下午2点，
+    华北黄淮大部地区的地表温度都在50℃以上，部分地区地表温度甚至超过60℃。其中，河北衡水地表温度高达68.3℃，天津站和北京站附近的地表温度分别高达66.6℃和66.5℃。在阳光暴晒下，
+    地表温度也逐渐走高。今天下午2点，华北黄淮大部地区的地表温度都在50℃以上，
+    部分地区地表温度甚至超过60℃。其中，河北衡水地表温度高达68.3℃，天津站和北京站附近的地表温度分别高达66.6℃和66.5℃。</p>
+    
+    <h4>明日热度再升级！京津冀携手冲击38℃+</h4>
+    
+    <p>中国天气网气象分析师王伟跃介绍，明天（4日），华北、黄淮地区35℃以上的高温天气还将继续升级，
+    并进入鼎盛阶段，高温强度和范围都将发展到最强。 明天，北京南部、天津大部、河北中部和南部、山东中部和西部、
+    山西南部局地、河南北部、东北部分地区的最高气温都将达到或超过35℃。</p>
+    
+    <p>不过，专家提醒，济南被雨水天气完美绕开，因此未来一周，当地的高温还会天天上岗。
+    在此提醒当地居民注意防暑降温，防范持续高温带来的各种不利影响。（文/张慧 数据支持/王伟跃 胡啸 审核/刘文静 张方丽）</p>
+
+    <p class="footer">本文来源：中国天气网 责任编辑：刘京_NO5631</p>
+</body>
+</html>
+```
+
+CSS文件：
+
+```css
+body {
+    font: 16px/28px 'Microsoft YaHei';
+
+}
+h1 {
+    font-weight: 400;
+    text-align: center;
+}
+.gray {
+    color: #888888;
+    font-size: 12px;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+}
+.search {
+    color: #666;
+    width: 170px;
+}
+.btn {
+    font-weight: 700;
+}
+p {
+    text-indent: 2em;
+}
+.footer {
+    color: #888;
+}
+```
+
+<img src="C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200806162522602.png" alt="image-20200806162522602" style="zoom:67%;" />
 
 
 
+### Chrome调试工具
+
+![image-20200806163118173](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200806163118173.png)
 
 
 
+### Emmet语法
+
+#### 快速生成HTML结构语法
+
+1. 生成标签 直接输入标签名 按tab键。比如div然后按tab键，就可以生成`<div></div>`
+2. 如果想要生成多个相同标签 加上`*`就可以了。比如 div`*`3就可以快速生成3个div
+3. 如果有服自己关系的标签，可以用`>`。比如ul`>`li就可以了
+4. 如果有兄弟关系的标签，用`+`就可以。比如div+p
+5. 如果生成带有类名或者id名字的，直接写`.demo`或者`#two`tab键就可以了
+6. 如果生成的div类名是由顺序的，可以用自增符号`$`
+7. 如果下能要在生成的标签内部写内容可以用`{}`表示
 
 
 
+#### 快速生成CSS样式语法
+
+CSS基本采取简写形式即可
+
+1. 比如`w200 `按tab键，可以生成`width: 200px;`
+2. 比如`lh26`按tab键，可以生成`line-height: 26px;`
 
 
 
+#### 快速格式化代码
+
+`shift + alt + F`
+
+<img src="C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200806174746557.png" alt="image-20200806174746557"  />
 
 
 
+### CSS的复合选择器
+
+常用的复合选择器包括：后代选择器、子选择器、并集选择器、伪类选择器等等。
 
 
 
+#### 后代选择器（重要）
+
+后代选择器又称包含选择器，可以选择父元素里面的子元素。其写法就是把外层标签写在前面，内层标签写在后面，中间用空格分割。当标签发生嵌套时，内层标签就成为外层标签的后代。
+
+语法：
+
+```txt
+元素1 元素2 { 样式声明 }
+```
+
+上述语法表示选择元素1里面的所有元素2（后代元素）。
+
+例如：
+
+```txt
+ul li { 样式声明 } /* 选择ul里面所有的li标签元素 */
+```
+
+* 元素1和元素2中间**一定要用空格隔开**
+* 元素1是父级，元素2是子级，**最终选择是元素2**
+* 只要包含在元素1里不管是子级，孙级都可以
+* 元素1和元素2可以是任意基础选择器
+
+<img src="C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200806202850766.png" alt="image-20200806202850766" style="zoom:67%;" />
+
+<img src="C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200806202923803.png" alt="image-20200806202923803" style="zoom:67%;" />
+
+![image-20200806202953676](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200806202953676.png)
 
 
 
+#### 子选择器（重要）
+
+子元素选择器（子选择器）只能选择作为某元素的最近一级子元素。简单理解是选亲儿子元素。
+
+```html
+<html>
+    <head>
+        <title>子元素选择器</title>
+        <style>
+            .nav>a {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="nav">
+            <a href="#">我是儿子</a>
+            <p>
+                <a href="#">我是孙子</a>
+            </p>
+        </div>
+    </body>
+</html>
+```
+
+语法：
+
+```txt
+元素1>元素2 { 样式声明 }
+```
+
+上述语法表示选择元素1里面的所有直接后代（子元素）元素2。
+
+例如：
+
+```txt
+div > p { 样式声明 } /* 选择div里面所有最近一级p标签元素 */
+```
+
+* 元素1和元素2中间用**大于号**隔开
+* 元素1是父级，元素2是子级，**最终选择的是元素2**
+* **只能选择亲儿子**
+
+
+
+#### 并集选择器（重要）
+
+并集选择器可以选择多组标签，同时为他们定义相同的样式。通常用于集体声明。
+
+并集选择器是各选择器通过应为逗号`,`连接而成，任何形式的选择器都可以作为并集选择器的一部分。
+
+语法：
+
+```txt
+元素1,元素2{ 样式声明 }
+```
+
+上述语法表示选择元素1和元素2。
+
+例如：
+
+```html
+ul,
+div { 样式声明 } 
+/* 选择ul 和 div标签元素 */
+```
+
+* 元素1和元素2中间用逗号隔开
+* 逗号可以理解为和的意思
+* **并集选择器竖着写**
+
+
+
+#### 伪类选择器
+
+味蕾选择器用于向某些选择器添加特殊的效果，比如给链接添加特殊效果，或者选择第1个，第n个元素。
+
+伪类选择器书写最大的特点是用冒号`:`表示，比如`:hover`。
+
+伪类选择器由很多：链接伪类、结构伪类等，这里讲的是链接伪类选择器。
+
+
+
+##### 链接伪类选择器
+
+```html
+a:link     /*选择所有未被访问的链接*/
+a:visited  /*选择所有已被访问的链接*/
+a:hover    /*选择鼠标指针位于其上的链接*/
+a:active   /*选择活动链接（鼠标按下未弹起的链接）*/
+```
+
+```html
+<html>
+    <head>
+        <title>链接伪类选择器</title>
+        <style>
+           /* 未访问的链接 a:link */
+            a:link {
+                color: #333;
+                text-decoration: none;
+            }
+            /* 访问过的链接 a:visited */
+            a:visited {
+                color: orange;
+            }
+            /* 鼠标经过的链接 a:hover */
+            a:hover {
+                color: skyblue;
+            }
+            /* 鼠标按下还没弹起的链接 a:active */
+            a:active {
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="#">链接伪类选择器</a>
+    </body>
+</html>
+```
+
+* 为了确保生效，按照LVHA的顺序声明：`:link`,`:visited`,`:hover`,`:active`
+* 链接指定样式需要单独指定a标签
+
+
+
+##### `:focus`伪类选择器
+
+`:focus`伪类选择器用于选取获得焦点的表单元素。
+
+焦点就是光标，一般情况`<input>`类表单元素才能获取，因此这个选择器也主要针对于表单元素来说。
+
+```html
+input:focus {
+   background-color: yellow;
+}
+```
+
+谁获得了光标就会改变颜色。
+
+
+
+#### 复合选择器总结
+
+| 选择器         | 作用                   | 特征             | 使用情况 | 隔开符号及用法              |
+| -------------- | ---------------------- | ---------------- | -------- | --------------------------- |
+| 后代选择器     | 用来选择后代元素       | 可以是子孙后代   | 较多     | 符号是**空格** .nav a       |
+| 子代选择器     | 选择最近一级元素       | 只选亲儿子       | 较少     | 符号是**大于** .nav>p       |
+| 并集选择器     | 选择某些相同样式的元素 | 可以用于集体声明 | 较多     | 符号是**逗号** .nav,.header |
+| 链接伪类选择器 | 选择不同状态的链接     | 跟链接相关       | 较多     | 重点记住a{}和a:hover        |
+| `:focus`选择器 | 选择获得光标的表单     | 跟表单相关       | 较少     | 记住input:focus             |
+
+
+
+### CSS的元素显示模式
+
+元素显示模式就是元素（标签）以什么方式进行显示比如`<div>`自己多占一行，比如一行可以放多个`<span>`。
+
+HTML元素一般分为两大类：块元素和行内元素。
+
+
+
+#### 块元素
+
+常见的块元素有：`<h1>~<h6>`，`<p>`，`<div>`，`<ul>`，`<ol>`，`<li>`等，其中`<div>`标签是最典型的块元素。
+
+特点：
+
+* 独占一行
+* 高度，宽度，外边距以及内边距都可以控制
+* 宽度默认是容器（父级宽度）的100%
+* 是一个容器及盒子，里面可以放行内或者块级元素
+
+注意：
+
+* 文字类的元素内不能使用块级元素
+* `<p>`标签主要用于存放文字，因此里面不能放块级元素，特别是不能放`<div>`
+* `<h1>~<h6>`也不能放块级元素
+
+
+
+#### 行内元素
+
+常见的行内元素有`<a>`，`<strong>`，`<b>`，`<em>`，`<i>`，`<del>`，`<s>`，`<ins>`，`<u>`，`<span>`等，其中`<span>`是最典型的行内元素。行内元素也称内联元素。
+
+特点：
+
+* 相邻行内元素在一行上，一行可以显示多个
+* 高，宽直接设置是无效的
+* 默认宽度就是它本身内容的宽度
+* 行内元素只能容纳文本或其他行内元素
+
+注意：
+
+* 链接里面不能放链接
+* 特殊情况链接`<a>`里面可以放块级元素，但转换一下块级模式最安全
+
+
+
+#### 行内块元素
+
+在行内元素中有几个特殊的标签-----`<img />`，`<input />`，`<td>`，他们同时具有块元素和行内元素的特点，有些资料称行内块元素。
+
+特点：
+
+* 和相邻行内元素（行内块）在一行上，但是他们之间会有空白缝隙，一行可以显示多个（行内元素特点）
+* 默认宽度就是他本身内容的宽度（行内元素特点）
+* 高度，行高，外边距以及内边框都可以控制（块级元素特点）
+
+
+
+#### 元素显示模式总结
+
+| 元素模式   | 元素排列               | 设置样式           | 默认宽度         | 包含                   |
+| ---------- | ---------------------- | ------------------ | ---------------- | ---------------------- |
+| 块级元素   | 一行只能放一个块级元素 | 可以设置宽度高度   | 容器的100%       | 容器可以包含任何标签   |
+| 行内元素   | 一行可以放多个行内元素 | 不可以设置宽度高度 | 它本身内容的宽度 | 容纳文本或其他行内元素 |
+| 行内块元素 | 一行放多个行内块元素   | 可以设置宽度和高度 | 它本身内容的宽度 |                        |
+
+
+
+####元素显示模式转换
+
+简单理解：一个模式的元素需要另一种模式的特性，比如想要增加链接`<a>`的出发范围。
+
+```html
+<html>
+     <head>
+        <title>元素显示模式转换</title>
+        <style>
+            a {
+                wdith: 150px;
+                height: 50px;
+                background-color: pink;
+                /*行内变块级*/
+                display: block;
+            }
+            div {
+                wdith: 300px;
+                height: 100px;
+                background-color: purple;
+                /*块级变行内*/
+                display: inline;
+            }
+            span {
+                wdith: 300px;
+                height: 30px;
+                background-color: skyblue;
+                display: inline-block;
+            }
+        </style>
+    </head>    
+    <body>
+        <a href="#">行内变块级</a>
+        <div>
+            块级变行内
+        </div>
+        <span>行内元素转换为行内块元素</span>
+    </body>
+</html>
+```
+
+![image-20200806224123311](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200806224123311.png)
+
+
+
+**实践：（小米网站侧边栏）**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单版小米侧边栏</title>
+    <style>
+        a {
+            width: 300px;
+            height: 40px;
+            display: block;
+            font-size: 14px;
+            color: white;
+            background-color: darkgray;
+            text-decoration: none;
+            text-indent: 2em;
+            line-height: 40px;
+        }
+        a:hover {
+            background-color: #ff6700;
+        }
+    </style>
+</head>
+<body>
+    <a href="#">手机 电话卡</a>
+    <a href="#">电视 盒子</a>
+    <a href="#">笔记本 平板</a>
+    <a href="#">出行 穿戴</a>
+    <a href="#">智能 路由器</a>
+    <a href="#">健康 儿童</a>
+    <a href="#">耳机 音响</a>
+</body>
+</html>
+```
+
+**文字居中：line-height: height;**
+
+
+
+### CSS背景
+
+#### 背景颜色
+
+background-color属性定义了元素的背景颜色。
+
+```html
+background-color: 颜色值;
+```
+
+一般情况下元素背景颜色默认值是transparent（透明），也可手动设置。
+
+
+
+#### 背景图片
+
+background-image属性描述了元素的背景图像。实际开发中常见于logo或者一些装饰性的小图片或者是超大的背景图片，非常便于控制位置。
+
+```html
+background-image: none | url(url);
+```
+
+```html
+div {
+   width: 300px;
+   height: 300px;
+   background-image: url(images/Logo.png); 
+}
+```
+
+| 参数值 | 作用                             |
+| ------ | -------------------------------- |
+| none   | 无背景图（默认的）               |
+| url    | 使用绝对或者相对地址指定背景图像 |
+
+
+
+#### 背景平铺
+
+如果需要在HTML页面上对背景图像进行平铺，可以使用background-repeat属性。
+
+```html
+background-repeat: repeat| no-repeat| repeat-x| repeat-y;
+```
+
+分别是：平铺|不平铺|沿x轴平铺（横向平铺）|沿y平铺（纵向平铺）
+
+背景颜色和背景图片可同在，只不过**背景图片会压住背景颜色。**
+
+
+
+#### 背景图片位置
+
+利用background-position属性可以改变图片在背景中的位置。
+
+```html
+background-position: x y;
+```
+
+x坐标和y坐标。可以使用方位名词或者精准单位。
+
+| 参数值   | 说明                                              |
+| -------- | ------------------------------------------------- |
+| length   | 百分数\|有浮点数字和单位标识符组成的长度值        |
+| position | top\|center\|bottom\|left\|center\|right 方位名词 |
+
+* left top和top left效果一样
+* 如果只指定了一个方位名词，另一个省略则默认剧中对齐
+* 如果参数值是精确坐标，那么第一个肯定是x坐标，第二个一定是y坐标
+* 如果只指定一个数值，那该数值一定是x坐标，另一个默认垂直居中
+* 也可以两种混用
+
+
+
+#### 背景图像固定（背景附着）
+
+background-attachment属性设置背景图像是否固定或者随着页面的其余部分滚动。
+
+background-attachment后期可以制作视差滚动的效果。
+
+```html
+background-attachment: scroll| fixed;
+```
+
+| 参数   | 作用                     |
+| ------ | ------------------------ |
+| scroll | 背景图像是随对象内容滚动 |
+| fixed  | 背景图像固定             |
+
+
+
+#### 背景的复合写法
+
+简化背景属性的代码，属性合并简写在同一个属性background中，从而节约代码量。
+
+顺序：
+
+```txt
+background: 背景颜色 背景图片 背景平铺 背景图像滚动 背景图片位置;
+```
+
+```html
+background: transparent url(image.ipg) repeat-y fixed top;
+```
+
+
+
+#### 背景颜色半透明
+
+CSS为我们提供了背景颜色半透明效果。
+
+```html
+background: rgba(0,0,0,0.3);
+```
+
+* r-red、g-green、b-blue
+* 最后一个参数是alpha透明度，取值范围在0-1之间
+* 0.3可以省略为.3
+* 只有背景颜色半透明
+
+
+
+#### 背景总结
+
+| 属性                  | 作用           | 值                                                   |
+| --------------------- | -------------- | ---------------------------------------------------- |
+| background-color      | 背景颜色       | 预定义的颜色/十六进制/RGB代码                        |
+| background-image      | 背景图片       | url（图片路径）                                      |
+| background-repeat     | 是否平铺       | repeat/no-repeat/repeat-x/repeat-y                   |
+| background-position   | 背景位置       | length/position                                      |
+| background-attachment | 背景附着       | scroll（背景滚动）/fixed（背景固定）                 |
+| 背景简写              | 书写更简单     | 背景颜色 背景图片 背景平铺 背景图像滚动 背景图片位置 |
+| 背景色半透明          | 背景颜色半透明 | background: rgba(0,0,0,0.3);                         |
 
