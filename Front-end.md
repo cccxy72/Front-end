@@ -1981,7 +1981,7 @@ HTML元素一般分为两大类：块元素和行内元素。
 
 
 
-**实践：（小米网站侧边栏）**
+####实践：（小米网站侧边栏）
 
 ```html
 <!DOCTYPE html>
@@ -2156,4 +2156,690 @@ background: rgba(0,0,0,0.3);
 | background-attachment | 背景附着       | scroll（背景滚动）/fixed（背景固定）                 |
 | 背景简写              | 书写更简单     | 背景颜色 背景图片 背景平铺 背景图像滚动 背景图片位置 |
 | 背景色半透明          | 背景颜色半透明 | background: rgba(0,0,0,0.3);                         |
+
+
+
+#### 综合案例：彩虹导航
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五彩导航</title>
+    <style>
+        .nav a{
+            display: inline-block;
+            width: 120px;
+            height: 58px;
+            background-color: pink;
+            text-align: center;
+            line-height: 48px;
+            text-decoration: none;
+            background-repeat: no-repeat;
+        }
+        .nav .bg1 {
+            background-image: url(images/bg1.png);
+        }
+        .nav .bg1:hover {
+            background-image: url(images/bg11.png);
+        }
+        .nav .bg2 {
+            background-image: url(images/bg2.png);
+        }
+        .nav .bg2:hover {
+            background-image: url(images/bg22.png);
+        }
+        .nav .bg3 {
+            background-image: url(images/bg3.png);
+        }
+        .nav .bg3:hover {
+            background-image: url(images/bg3.png);
+        }.nav .bg4 {
+            background-image: url(images/bg4.png);
+        }
+        .nav .bg4:hover {
+            background-image: url(images/bg4.png);
+        }.nav .bg5 {
+            background-image: url(images/bg5.png);
+        }
+        .nav .bg5:hover {
+            background-image: url(images/bg5.png);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="#" class="bg1">五彩导航</a>
+        <a href="#" class="bg2">五彩导航</a>
+        <a href="#" class="bg3">五彩导航</a>
+        <a href="#" class="bg4">五彩导航</a>
+        <a href="#" class="bg5">五彩导航</a>
+    </div>
+</body>
+</html>
+```
+
+
+
+### CSS三大特性
+
+**层叠性、继承性、优先级。**
+
+
+
+#### 层叠性
+
+给相同选择器设置相同的样式，此时一个样式就会覆盖（层叠）另一个冲突的样式。层叠性主要解决样式冲突问题。
+
+层叠性原则：
+
+* 样式冲突，遵循的原则是**就近原则**，那个样式离结构近，就执行哪个样式
+* 样式不冲突，不会层叠
+
+
+
+#### 继承性
+
+子标签会继承父标签的某些样式，如文本颜色和字号。**子承父业**。
+
+* 子元素可以继承父亲元素的样式（`text-`、`font-`、`line-`这些元素开头的可以继承，以及color属性）
+
+
+
+##### 行高的继承
+
+```html
+body {
+   font: 12px/1.5 Microsoft YaHei;
+}
+```
+
+* 行高可以跟单位也可以不跟单位
+* 1.5是当前文字大小的1.5倍  当前行高：font-size*1.5
+
+
+
+#### 优先级
+
+当同一个元素指定多个选择则其，就会有优先级的产生。
+
+* 选择器相同，则执行层叠性
+* 选择器不同，则根据**选择器权重**执行
+
+| 选择器               | 选择器权重 |
+| -------------------- | ---------- |
+| 继承 或者 `*`        | 0,0,0,0    |
+| 元素选择器           | 0,0,0,1    |
+| 类选择器、伪类选择器 | 0,0,1,0    |
+| ID选择器             | 0,1,0,0    |
+| 行内样式`style=""`   | 1,0,0,0    |
+| `!important`重要的   | 无穷大     |
+
+**行内>ID>类>元素>继承**
+
+* 继承的权重是0，子元素的权重永远是0
+
+
+
+##### 权重叠加
+
+复合选择器会有权重叠加的问题
+
+div ul  li ------->0,0,0,3
+
+.nav ul li ------>0,0,1,2
+
+a:hover ------->0,0,1,1
+
+.nav a --------->0,0,1,1
+
+
+
+### 盒子模型
+
+网页布局过程：
+
+1. 先准备好相关的网页元素，网页元素基本都是盒子Box
+2. 利用CSS设置好的样式，然后摆放到相应位置
+3. 往盒子里装内容
+
+CSS核心就是摆盒子。
+
+
+
+#### 盒子模型（Box Model）组成
+
+CSS盒子模型本质上是一个盒子，封装周围的HTML元素，它包括：边框、外边距、内边距和实际内容
+
+![image-20200807173615888](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200807173615888.png)
+
+
+
+#####边框（border）
+
+border可以设置元素的边框，边框有三部分组成：边框宽度（粗细）、边框样式、边框颜色
+
+语法：
+
+```html
+border : border-width|| border-style|| border-color
+```
+
+| 属性         | 作用                   |
+| ------------ | ---------------------- |
+| border-width | 定义边框粗细，单位是px |
+| border-style | 边框的样式             |
+| border-color | 边框的颜色             |
+
+
+
+![image-20200807174518735](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200807174518735.png)
+
+**solid实线边框    dashed虚线边框   dotted点线边框**
+
+CSS边框属性允许指定一个元素边框的样式和颜色
+
+边框简写：
+
+```html
+border: 1px solid red; 没有顺序
+```
+
+边框分开写法：
+
+```html
+border-top: 1px solid red;/* 只设定上边框，其余同理 */
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid blue;
+            border-top: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
+```
+
+
+
+##### 表格的细线边框
+
+border-collapse属性控制浏览器绘制表格边框的方式。它控制相邻单元格的边框。
+
+语法：
+
+```html
+border-collapse: collapse;
+```
+
+* collapse单词是合并的意思
+* `border-collapse: collapse;`表示相邻边框会合并到一起
+
+**合并例子：**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>今日小说排行榜</title>
+    <style>
+        table {
+            width: 500px;
+            height: 249px;
+        }
+        table,
+        td,
+        th {
+            border: 1px solid pink;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <table align="center" width="500" height="249" border="1" cellspacing="0">
+    <thead>
+        <tr>
+            <th>排名</th>
+            <th>关键词</th>
+            <th>趋势</th>
+            <th>进入搜索</th>
+            <th>最近七日</th>
+            <th>相关链接</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>鬼吹灯</td>
+            <td><img src="down.jpg"></td>
+            <td>456</td>
+            <td>123</td>
+            <td> <a href="#">贴吧</a> <a href="#">图片</a> <a href="#">百科</a> </td>
+        </tr>
+
+        <tr>
+                <td>1</td>
+                <td>鬼吹灯</td>
+                <td><img src="down.jpg"></td>
+                <td>456</td>
+                <td>123</td>
+                <td> <a href="#">贴吧</a> <a href="#">图片</a> <a href="#">百科</a> </td>
+        </tr>
+        <tr>
+                <td>3</td>
+                <td>西游记</td>
+                <td><img src="up.jpg"></td>
+                <td>456</td>
+                <td>123</td>
+                <td> <a href="#">贴吧</a> <a href="#">图片</a> <a href="#">百科</a> </td>
+        </tr>
+        <tr>
+                <td>1</td>
+                <td>鬼吹灯</td>
+                <td><img src="down.jpg"></td>
+                <td>456</td>
+                <td>123</td>
+                <td> <a href="#">贴吧</a> <a href="#">图片</a> <a href="#">百科</a> </td>
+        </tr>
+        <tr>
+                <td>1</td>
+                <td>鬼吹灯</td>
+                <td><img src="down.jpg"></td>
+                <td>456</td>
+                <td>123</td>
+                <td> <a href="#">贴吧</a> <a href="#">图片</a> <a href="#">百科</a> </td>
+        </tr>
+        <tr>
+                <td>1</td>
+                <td>鬼吹灯</td>
+                <td><img src="down.jpg"></td>
+                <td>456</td>
+                <td>123</td>
+                <td> <a href="#">贴吧</a> <a href="#">图片</a> <a href="#">百科</a> </td>
+        </tr>
+    </tbody>           
+    </table>
+</body>
+</html>
+```
+
+
+
+##### 边框会影响盒子实际大小
+
+200大小的正方形盒子+两边都有的10px边框=220大小
+
+width/height减去边框。
+
+
+
+##### 内边距
+
+padding属性用于设置内边距，即边框与内容之间的距离。
+
+| 属性           | 作用     |
+| -------------- | -------- |
+| padding-left   | 左内边距 |
+| padding-right  | 右内边距 |
+| padding-top    | 上内边距 |
+| padding-bottom | 下内边距 |
+
+```html
+div {
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+    padding-left: 20px
+}
+```
+
+**padding简写属性：**
+
+| 值的个数                     | 表达意思                                                   |
+| ---------------------------- | ---------------------------------------------------------- |
+| padding: 5px;                | 一个值，代表上下左右都有5像素内边距                        |
+| padding: 5px 10px;           | 两个值，代表上下内边距是5像素，左右边距是10像素            |
+| padding: 5px 10px 20px;      | 3个值，代表上内边距5像素，左右内边距10像素，下内边距20像素 |
+| padding: 5px 10px 20px 30px; | 4个值，上是5像素 右是10像素 下是20像素 左是30像素 顺时针   |
+
+
+
+##### padding内边距也会影响盒子的大小
+
+width/height减去多余的内边距。
+
+如果盒子本身没有指定width/height属性，则此时padding不会撑开盒子大小。
+
+
+
+##### 实践：新浪导航栏
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nav {
+            height: 41px;
+            background-color: #fcfcfc;
+            border-top: 3px solid #ff8500;
+            border-bottom: 1px solid #edeef0;
+            line-height: 41px;
+        }
+        .nav a {
+            display: inline-block;
+            font-size: 12px;
+            height: 41px;
+            padding: 0 20px;
+            color: #4c4c4c;
+            text-decoration: none;
+        }
+        .nav a:hover {
+            background-color: #eee;
+            color: #ff8500;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="#">新浪导航</a>
+        <a href="#">手机新浪网</a>
+        <a href="#">移动客户端</a>
+        <a href="#">微博</a>
+    </div>
+</body>
+</html>
+```
+
+
+
+#####外边距（margin）
+
+margin属性用于设置外边距，则控制盒子和盒子之间的距离。
+| 属性           | 作用     |
+| -------------- | -------- |
+| margin-left   | 左外边距 |
+| margin-right  | 右外边距 |
+| margin-top    | 上外边距 |
+| margin-bottom | 下外边距 |
+
+margin简写方式和padding完全一致。
+
+外边距可以让**块级盒子水平居中**，但是必须满足两个条件：
+
+* 盒子必须指定了宽度（width）
+* 盒子左右的外边距都设置为auto
+
+```html
+.header { width: 960px; margin: 0 auto;}
+```
+
+![image-20200807225823295](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200807225823295.png)
+
+
+
+##### 外边距合并
+
+对于两个嵌套关系（父子关系）的块元素，父元素有上外边距同时子元素也有上外边距，此时父元素会**塌陷**较大的外边距值。
+
+解决方案：
+
+* 可以为父元素定义上边框
+* 可以为父元素定义上内边框
+* **可以为父元素添加`overflow:hidden`**
+
+
+
+##### 清除内外边距
+
+网页元素很多都带有默认的内外边距，而且不同浏览器默认的也不一致。
+
+```html
+* {
+  padding: 0;  /*清除内边距*/
+  margin: 0;   /*清除外边距*/
+}
+```
+
+行内元素为了照顾兼容性尽量只设置左右内外边距，不要设置上下内外边距。但是转换为块级和行内块元素就可以了。
+
+
+
+#### PS基本操作
+
+![image-20200807231659528](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200807231659528.png)
+
+![image-20200807231804114](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200807231804114.png)
+
+
+
+####综合案例
+
+案例1：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            background-color: #f5f5f5;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        .box {
+            background-color: #fff;
+            width: 298px;
+            height: 415px;
+            margin: 100px auto;
+        }
+        .box img {
+            width: 298px;
+        }
+        .review {
+            font-size: 14px;
+            height: 70px;
+            /* 段落没有width属性，所以padding不会撑宽宽度 */
+            padding: 0 28px;
+            margin-top: 30px;
+        }
+        .appraise {
+            font-size: 12px;
+            color: #b0b0b0;
+            margin-top: 20px;
+            padding: 0 28px;
+        }
+        .info {
+            font-size: 14px;
+            margin-top: 15;
+            padding: 0 28px;           
+        }
+        .info h4 {
+            display: inline-block;  
+            font-weight: 400;  
+        }
+        .info span {
+            color: coral;
+        }
+        .info em {
+            font-style: normal;
+            color: #b0b0b0;
+            margin: 0 6px 0 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <a href="#"><img src="images/img.jpg" alt=""></a>
+        <p class="review"><a href="#">快递牛，整体不错蓝牙可以说秒连。红米给力</a></p>
+        <p class="appraise">来自于1178928的评价</p>
+        <div class="info">
+            <h4><a href="#">Redmi AirDots真无线蓝...</a></h4> 
+            <em>|</em>
+            <span>99.9元</span>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+![image-20200807235531304](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200807235531304.png)
+
+案例2：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;        
+        }
+        .box {
+            width: 248px;
+            height: 163px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+        }
+        .box h3 {
+            height: 32px;
+            border-bottom: 1px dotted #ccc;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 32px;
+            padding-left: 15px;
+        }
+        li {
+            list-style: none;
+            height: 23px;
+            line-height: 23px;
+            padding-left: 20px;
+        }
+        ul {
+            margin-top: 7px;
+        }
+        .box ul li a {
+            font-size: 12px;
+            text-decoration: none;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="one">
+            <h3 class="title">品优购快报</h3>
+        </div>
+        <div class="two">
+            <ul>
+                <li><a href="#">【特惠】爆款耳机5折秒！</a></li>
+                <li><a href="#">【特惠】母亲节，健康好礼低至5折</a></li>
+                <li><a href="#">【特惠】爆款耳机5折秒！</a></li>
+                <li><a href="#">【特惠】9.9元洗100张照片</a></li>
+                <li><a href="#">【特惠】长虹立省空调立省1000</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+```html
+ li {
+    list-style: none;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
