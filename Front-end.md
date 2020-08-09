@@ -2786,6 +2786,18 @@ margin简写方式和padding完全一致。
 
 
 
+#### 圆角边框（重点）
+
+border-radius属性用于设置元素的外边框圆角。
+
+```html
+border-radius: length;
+```
+
+* 参数值可以为数值或者百分比的形式
+* **圆形盒子：length=正方形盒子一半 或者 50%**
+* 圆角矩形：length=高度的一半
+
 
 
 
