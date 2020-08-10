@@ -2797,6 +2797,547 @@ border-radius: length;
 * 参数值可以为数值或者百分比的形式
 * **圆形盒子：length=正方形盒子一半 或者 50%**
 * 圆角矩形：length=高度的一半
+* 该属性是一个简写属性，可以跟四个值，分别代表左上角、右上角、左下角、右下角（顺时针）
+* 分开写：border-top-left-radius
+
+
+
+#### 盒子阴影（重点）
+
+CSS3中新增了盒子阴影，我们可以使用box-shadow属性为盒子添加阴影。
+
+语法：
+
+```html
+box-shadow: h-shadow v-shadow blur spread color inset;
+```
+
+| 值       | 描述                                                  |
+| -------- | ----------------------------------------------------- |
+| h-shadow | 必需。水平阴影的位置，允许负值                        |
+| v-shadow | 必需。垂直阴影的位置，允许负值                        |
+| blur     | 可选。模糊距离                                        |
+| spread   | 可选。阴影的尺寸                                      |
+| color    | 可选。阴影的颜色                                      |
+| inset    | 可选。将外部阴影（outset,默认，不能出现）改为内部阴影 |
+
+```html
+div {
+   box-shadow: 10px 10px 10px 10px rgba(0,0,0,.3);
+}
+```
+
+
+
+#### 文字阴影
+
+可以使用text-shadow属性为文本添加阴影。
+
+```html
+text-shadow: h-shadow v-shadow blur color;
+```
+
+| 值       | 描述                                                  |
+| -------- | ----------------------------------------------------- |
+| h-shadow | 必需。水平阴影的位置，允许负值                        |
+| v-shadow | 必需。垂直阴影的位置，允许负值                        |
+| blur     | 可选。模糊距离                                        |
+| color    | 可选。阴影的颜色                                      |
+
+```html
+div {
+    text-shadow: 5px 5px 6px rgba(0,0,0,.3);
+}
+```
+
+
+
+
+
+### 浮动
+
+浮动最典型的应用就是可以让多个块级元素一行内排列显示。
+
+**网页布局第一准则：多个块级元素总i昂排列找标准流，多个块级元素横向排列找浮动**。
+
+
+
+#### 布局方式
+
+CSS提供了三种传统布局方式（简单说，就是盒子如何进行排列顺序）：
+
+* 普通流（标准流）
+* 浮动
+* 定位
+
+
+
+##### 标准流（普通流/文档流）
+
+就是标签按照规定好的默认方式排列。
+
+1. 块级元素会独占一行，从上向下顺序排列。常用元素：`div`，`hr`，`p`，`h1~h6`，`ul`，`ol`，`dl`，`form`，`table`
+2. 行内元素会按照顺序，从左到右顺序排列，碰到父元素边缘则自动换行。常用元素：`span`，`a`，`i`，`em`等
+
+
+
+#### 浮动
+
+float属性用于创建浮动框，将其移动到一遍，直到左边缘或右边缘及包含块或另一个浮动框的边缘。
+
+```html
+选择器 { float:属性值; }
+```
+
+| 属性值 | 描述         |
+| ------ | ------------ |
+| none   | 元素不浮动   |
+| left   | 元素向左浮动 |
+| right  | 元素向右浮动 |
+
+
+
+#### 浮动特性（重难点）
+
+1. 浮动元素会脱离标准流
+2. 浮动的元素会一行内显示并且元素顶部对齐
+3. 浮动的元素会具有行内块元素的特性
+
+* **脱离标准普通流的控制（浮）移动到指定位置（动），俗称脱标**
+* **浮动的盒子不再保留原先的位置**
+
+<img src="C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809220809307.png" alt="image-20200809220809307" style="zoom:67%;" />
+
+
+
+<img src="C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809220935797.png" alt="image-20200809220935797" style="zoom:67%;" />
+
+![image-20200809221058103](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809221058103.png)
+
+* **如果多个盒子都设置了浮动，则他们会按照属性值一行内显示并且顶端对齐排列**
+
+![image-20200809221456178](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809221456178.png)
+
+* **浮动的元素是互相贴靠在一起的（不会有缝隙），如果父级宽度装不下这些浮动的盒子，多出的盒子会另起一行对齐**。
+
+![image-20200809221422947](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809221422947.png)
+
+* 只要添加浮动之后具有**行内块**相似的特性。
+* 如果块级盒子没有设置宽度，默认和父级一样宽，但是添加浮动后，他的大小根据内容来决定。
+* 浮动的盒子中间是没有缝隙的，是紧挨着一起的。
+
+
+
+#### 浮动元素和标准流父级搭配使用
+
+![image-20200809222836971](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809222836971.png)
+
+先用标准流的父元素排列上下位置，之后内部子元素采取浮动排列左右位置，符合网页布局第一准则。
+
+
+
+##### 实践：小米布局案例
+
+![image-20200809230742006](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809230742006.png)
+
+![image-20200809230809860](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809230809860.png)
+
+![image-20200809230832477](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809230832477.png)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 1200px;
+            height: 460px;
+            background-color: pink;
+            margin: 0 auto;
+        }
+        .left {
+            float: left;
+            height: 460px;
+            width: 230px;
+            background-color: purple;
+        }
+        .right {
+            float: left;
+            width: 970px;
+            height: 460px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+    <div class="left">左</div>
+    <div class="right">右</div>
+    </div>
+</body>
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box li {
+            float: left;
+            margin: 0 14px;
+            list-style: none;
+            width: 285px;
+            height: 285px;
+            background-color: pink;
+        }
+        .box {
+            height: 285px;
+            width: 1226px;
+            background-color: black;
+        }
+        .box .four {
+            margin-right: 0;
+        }
+        .box .one {
+            margin-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <ul class="box">
+        <li class="one">1</li>
+        <li class="two">2</li>
+        <li class="three">3</li>
+        <li class="four">4</li>
+    </ul>
+</body>
+</html>
+```
+
+* **网页布局第二准则：先设置盒子大小，之后设置盒子的位置。**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 1226px;
+            height: 615px;
+            margin: 0 auto;
+            background-color: pink;
+        }
+        .left {
+            float: left;
+            height: 615px;
+            width: 234px;
+            background-color: blueviolet;
+        }
+        .right {
+            float: left;
+            width: 992px;
+            height: 615px;
+            background-color: skyblue;
+        }
+        .right>div {
+            float: left;
+            width: 234px;
+            height: 300px;
+            background-color: pink;
+            margin-left: 14px;
+            margin-bottom: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="left"></div>
+        <div class="right">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+
+
+#### 常见网页布局
+
+![image-20200809231043794](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809231043794.png)
+
+![image-20200809231058873](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809231058873.png)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        .top {
+            height: 50px;
+            background-color: gray;
+        }
+        .banner {
+            width: 980px;
+            height: 150px;
+            margin: 10px auto;
+            background-color: gray;
+        }
+        .box {
+            width: 980px;
+            height: 300px;
+            margin: 0 auto;
+            background-color:pink ;
+        }
+        .box li{
+            float: left;
+            width: 237px;
+            height: 300px;
+            background-color: gray;
+            margin-right: 10px;
+        }
+        .box .last {
+            margin-right: 0px;
+        }
+        .footer {
+            height: 200px;
+            background-color: gray;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">top</div>
+    <div class="banner">banner</div>
+    <div class="box">
+        <ur>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li class="last">4</li>
+        </ur>
+    </div>
+    <div class="footer">footer</div>
+</body>
+</html>
+```
+
+**通栏不需要指定宽只需要指定高。**
+
+
+
+#### 浮动布局注意点
+
+1. 浮动和标准流的父盒子搭配：**先用标准流的父元素排列上下位置，之后内部子元素采用浮动排列左右位置**
+2. 一个元素浮动了，理论上其余的兄弟元素也要浮动：一个盒子里面右多个子盒子，如果其中一个盒子浮动了，那么其他兄弟也应该浮动，以防引起问题。**浮动的盒子之后影响后面的标准流不会影响前面的标准流。**
+
+
+
+#### 清除浮动
+
+![image-20200809233631193](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809233631193.png)
+
+清除浮动本质就是清楚浮动元素造成的影响。
+
+如果父盒子本身有高度，则不需要清除浮动。
+
+**清除浮动之后，父级就会根据浮动的盒子自动检测高度。父级有了高度，就不会影响下面的标准流了。**
+
+语法：
+
+```html
+选择器 { clear:属性值; }
+```
+
+| 属性值 | 描述                                           |
+| ------ | ---------------------------------------------- |
+| left   | 不允许左侧左浮动元素（清除左侧浮动元素的影响） |
+| right  | 不允许左侧右浮动元素（清除右侧浮动元素的影响） |
+| both   | 同时清除左右两侧浮动的影响                     |
+
+**几乎只用`clear:both;`。**
+
+**清除浮动的策略是：闭合浮动。**
+
+ 
+
+##### 清除浮动的方法
+
+1. 额外标签法（隔墙法），W3C推荐
+2. 父级添加overflow属性
+3. 父级添加after伪元素
+4. 父级添加双伪元素
+
+
+
+##### 额外标签法
+
+额外标签法也称隔墙法。
+
+额外标签法会在浮动元素末尾添加一个空的标签。例如`<div style="clear:both"></div>`，或者其他标签（例如`<br />`等)
+
+**注意：要求这个新的空标签必须是块级元素。**
+
+![image-20200809235313163](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809235313163.png)
+
+
+
+##### 父级添加overflow
+
+可以给父级添加overflow属性，将其属性值为hidden、auto或scroll。
+
+```html
+.box {
+    overflow: hidden;
+}
+```
+
+缺点：无法显示溢出的部分。
+
+
+
+#####after伪元素法
+
+:after方式是额外标签法的升级版。也是给父元素添加。
+
+![image-20200809235816706](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809235816706.png)
+
+![image-20200809235925954](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200809235925954.png)
+
+
+
+##### 双伪元素清除浮动
+
+也是给父元素添加。
+
+![image-20200810000204939](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810000204939.png)
+
+![image-20200810000307192](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810000307192.png)
+
+
+
+#### 清除浮动总结
+
+为什么要清除浮动：
+
+* 父级没高度
+* 子盒子浮动了
+* 影响下面布局了，就应该清除浮动
+
+| 清除浮动的方式         | 优点               | 缺点                             |
+| ---------------------- | ------------------ | -------------------------------- |
+| 额外标签法（隔墙法）   | 通俗易懂，书写方便 | 天机许多无意义的标签，结构化较差 |
+| 父级`overflow:hidden;` | 书写简单           | 溢出隐藏                         |
+| 父级after伪元素        | 结构语义化正确     | 由于IE6-7不支持after，兼容性问题 |
+| 父级双伪元素           | 结构语义化正确     | 由于IE6-7不支持after，兼容性问题 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
