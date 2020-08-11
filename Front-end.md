@@ -3264,43 +3264,197 @@ float属性用于创建浮动框，将其移动到一遍，直到左边缘或右
 
 
 
+#### PS切图
+
+![image-20200810151624563](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810151624563.png)
 
 
 
+##### 图层切图
+
+![image-20200810152756378](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810152756378.png)
 
 
 
+##### 切片切图
+
+![image-20200810153555475](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810153555475.png)
 
 
 
+##### PS插件切图
+
+![image-20200810154009831](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810154009831.png)
 
 
 
+####综合案例
+
+##### 准备素材和工具
+
+![image-20200810155209908](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810155209908.png)
+
+##### 案例准备工作
+
+![image-20200810155702999](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810155702999.png)
 
 
 
+##### CSS属性书写顺序（重点）
+
+![image-20200810161349882](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810161349882.png)
+
+![image-20200810161259157](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810161259157.png)
 
 
 
+#####页面布局整体思路
+
+![image-20200810162019839](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810162019839.png)
 
 
 
+##### 确定版心
+
+![image-20200810165551491](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810165551491.png)
 
 
 
+##### 头部制作
+
+![image-20200810165805616](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810165805616.png)
+
+![image-20200810175036976](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810175036976.png)
+
+html：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header w">
+        <!-- 标志 -->
+        <div class="logo">
+            <img src="images/logo_03.png" alt="">
+        </div>
+        <!-- 导航栏 -->
+        <div class="nav">
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">课程</a></li>
+                <li><a href="#">职业规划</a></li>
+            </ul>
+        </div>
+        <!-- 搜索模块 -->
+        <div class="search">
+            <input type="text" value="输入关键词">
+            <button></button>
+        </div>
+        <!-- 用户模块 -->
+        <div class="user">
+            <img>qq-lilei
+        </div>
+    </div>
+</body>
+</html>
+```
+
+CSS：
+
+```css
+* {
+    margin: 0;
+    padding: 0;
+}
+.w {
+    width: 1200px;
+    margin: auto;
+}
+li {
+    list-style: none;
+}
+.header {
+    height: 42px;
+    background-color: pink;
+    margin: 30px auto;
+}
+.logo {
+    float: left;
+    width: 198px;
+    height: 42px;
+    background-color: blueviolet;
+}
+.nav {
+    float: left;
+    margin-left: 60px;
+}
+.nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+.nav ul li a {
+    display: block;
+    height: 42px;
+    padding: 0 10px;
+    line-height: 42px;
+    font-size: 18px;
+    color: #050505;
+    text-decoration: none;
+}
+.nav ul li a:hover {
+    border-bottom: 2px solid #00a4ff;
+    color: #00a4ff;
+}
+.search {
+    float: left;
+    width: 412px;
+    height: 42px;
+    background-color: skyblue;
+    margin-left: 50px;
+}
+.search input {
+    float: left;
+    width: 345px;
+    height: 40px;
+    border: 1px solid skyblue;
+    border-right: 0;
+    padding-left: 15px;
+    color: #bfbfbf;
+    font-size: 14px;
+}
+.search button {
+    float: left;
+    width: 50px;
+    height: 42px;
+    border: 0;
+    background-color: #00a4ff;
+}
+.user {
+    float: right;
+    line-height: 42px;
+    margin-right: 30px;
+    font-size: 14px;
+    color: #666;
+}
+```
 
 
 
+##### banner制作
+
+![image-20200810223804746](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200810223804746.png)
 
 
 
+##### 精品推荐小模块
 
-
-
-
-
-
-
+![image-20200811175321664](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200811175321664.png)
 
 
 
