@@ -4301,33 +4301,337 @@ a {
 
 
 
+####综合案例：淘宝焦点图布局
+
+1. 大盒子我们类名为: tb-promo 淘宝广 告
+2. 里面先放一张图片
+3. 左右两个按钮用链接就好了。左箭头 prev右箭头 next
+4. 底侧小圆点ul继续做。类名为 promo-nav
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘宝轮播图做法</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        .tb-promo {
+            position: relative;
+            width: 520px;
+            height: 280px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+        .tb-promo img {
+            width: 520px;
+            height: 280px;
+        }
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            /* 加了绝对定位的盒子可以直接设置宽度和高度 */
+            width: 20px;
+            height: 30px;
+            background: rgba(0,0,0,.3);
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .prev {
+            /* 如果一个 盒于既有Left属性也有right属性，则默认会执行Left属性同理top bottom 会执行 top */
+            left: 0;    
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        .next {
+            right: 0;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+        .promo-nav {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            margin-left: -35px;
+            width: 70px;
+            height: 13px;
+            background-color: rgba(255,255,255,.3);
+            border-radius: 7px;
+        }
+        .promo-nav li {
+            float: left;
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 3px;
+        }
+        /* 不要忘记权重问题 */
+        .promo-nav .selected {
+            background-color: #ff5000;
+        }
+    </style>
+</head>
+<body>
+    <div class="tb-promo">
+        <img src="images/tb.jpg" alt="">
+        <!-- 左侧按钮 -->
+        <a href="#" class="prev">&lt;</a>
+        <!-- 右侧按钮 -->
+        <a href="#" class="next">&gt;</a>
+        <!-- 小圆点 -->
+        <ul class="promo-nav">
+            <li class="selected"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>
+```
 
 
 
+#### 网页布局总结
+
+通过盒子模型,清楚知道大部分html标签是一个盒子。
+通过CSS浮动、定位可以让每个盒子排列成为网页。
+一个完整的网页,是标准流、浮动、定位一起完成布局的,每个都有自己的专门用法。
+**标准流**
+可以让盒子上下排列或者左右排列, 垂直的块级盒子显示就用标准流布局。（擅长上下排列）
+**浮动**
+可以让多个块级元素一行显示或者左右对齐盒子 ,多个块级盒子水平显示就用浮动布局。（块级盒子一行排列）
+**定位**
+定位最大的特点是有层叠的概念,就是可以让多个盒子前后叠压来显示。如果元素自由在某个盒子内移动就用定位布局。
 
 
 
+#### 元素的显示与隐藏
+
+类似网站广告,当我们点击关闭就不见了,但是我们重新刷新页面,会重新出现
+
+本质:让一个元素在页面中隐藏或者显示出来。
+
+* display 显示隐藏
+* visibility 显示隐藏
+* overflow 溢出显示隐藏
 
 
 
+##### display属性（超重要）
+
+display属性用于设置-个元素应如何显示。
+
+* display: none ;隐藏对象
+* display : block ;除了转换为块级元素之外,同时还有显示元素的意思
+
+**display : block ;除了转换为块级元素之外,同时还有显显元索的意思**
 
 
 
+#####visibility可见性
+
+visibility属性用于指定一个元素应可见还是隐藏。
+
+* visibility : visible;元素可视
+* visibility : hidden;元素隐藏
+
+**visibility隐藏元素后,继续占有原来的位置。**
+
+如果隐藏元素想要原来位置，就用visibility : hidden
+如果隐藏元素不想要原来位置，就用display : none (用处更多重点)
 
 
 
+##### overflow溢出
+
+overflow属性指定了如果内容溢出一个元素的框(超过其指定高度及宽度)时,会发生什么。
+
+| 属性值  | 描述                                       |
+| ------- | ------------------------------------------ |
+| visible | 不剪切内容也不添加滚动条                   |
+| hidden  | 不显示超过对象尺寸的内容，超出的部分隐藏掉 |
+| scroll  | 不管超出内容否，总是显示滚动条             |
+| auto    | 超出自动显示滚动条，不超出不显示滚动条     |
+
+一般情况下 我们都不想让溢出的内容 显示出来,因为溢出的部分会影响布局。
+但是如果有定位的盒子,请慎用overflow:hidden因为它会隐藏多余的部分。
 
 
 
+##### 总结
+
+* display显示隐藏元素但是不保留位置
+* visibility显示隐藏元素但是保留原来的位置
+* overflow溢出显示隐藏但是只是对于溢出的部分处理
 
 
 
+##### 综合案例：土豆网鼠标经过显示遮罩
+
+核心原理:原先半透明的黑色遮罩看不见，鼠标经过大盒子,就显示出来。
+遮罩的盒子不占有位置，就需要用绝对定位和display配合使用。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>土豆网隐藏遮罩</title>
+    <style>
+        .tudou {
+            position: relative;
+            width: 444px;
+            height: 320px;
+            margin: 30px auto;
+        }
+        .tudou img {
+            width: 100%;
+            height: 100%;
+        }
+        .mask {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.4) url(images/arr.png) no-repeat center;
+        }
+        /* 当我们鼠标经过了 遮罩层显示出来 */
+        .tudou:hover .mask {
+            /* 显示元素 */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="tudou">
+        <div class="mask"></div>
+        <img src="images/tudou.jpg" alt="">
+    </div>
+</body>
+</html>
+```
 
 
 
+### CSS高级技巧
+
+#### 精灵图
+
+一个网页中往往会应用很多小的背景图像作为修饰，当网页中的图像过多时，服务器就会频繁地接收和发送请求图片，造成服务器请求压力过大，这将大大降低页面的加载速度。
+
+因此，为了有效地减少服务器接收和发送请求的次数，提高页面的加载速度，出现了**CSS精灵技术**(也称CSS Sprites、CSS雪碧)。
 
 
 
+##### 精灵图（sprites）的使用
+
+**使用精灵图核心:**
+
+* 精灵技术主要针对于背景图片使用。就是把多个小背景图片整合到-张大图片中。
+* 这个大图片也称为sprites精灵图或者雪碧图
+* 移动背景图片位置,此时可以使用background-position.
+* 移动的距离就是这个目标图片的x和y坐标。注意网页中的坐标有所不同
+* 因为一般情况下都是往上往左移动,所以数值负值。
+* 使用精灵图的时候需要精确测量,每个小背景图片的大小和位置。
+
+**使用精灵图核心总结:**
+
+* 精灵图主要针对于小的背景图片使用。
+* 主要借助于背景位置来实现--background-position.
+* 一般情况下精灵图都是负值。( 千万注意网页中的坐标: x轴右边走是正值,左边走是负值，y轴同理。)
+
+
+
+##### 实践案例
+
+![image-20200817162632322](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200817162632322.png)
+
+
+
+#### 字体图标
+
+字体图标使用场景:主要用于显示网页中通用、常用的一些小图标。
+精灵图是有诸多优点的,但是缺点很明显。
+
+* 图片文件还是比较大的。
+* 图片本身放大和缩小会失真。
+* 一旦图片制作完毕想要更换非常复杂。
+
+此时,有一种技术的出现很好的解决了以上问题,就是**字体图标iconfont**
+
+字体图标可以为前端工程师提供一种方便高效的图标使用方式 ,展示的是图标,本质属于字体。
+
+
+
+##### 字体图标的优点
+
+轻量级:一个图标字体要比一系列的图像要小。 一旦字体加载了,图标就会马上渲染出来,减少了服务器请求
+
+灵活性:本质其实是文字,可以很随意的改变颜色、产生阴影、透明效果、旋转等
+
+兼容性:几乎支持所有的浏览器,请放心使用
+
+**注意:**字体图标不能替代精灵技术,只是对工作中图标部分技术的提升和优化。
+
+**总结：**
+
+如果遇到一些结构和样式比较简单的小图标,就用字体图标。
+
+![image-20200817163305809](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200817163305809.png)
+
+如果遇到一些结构和样式复杂一点的小图片 ,就用精灵图。
+
+<img src="C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200817163329521.png" alt="image-20200817163329521" style="zoom:50%;" />
+
+
+
+##### 字体图标的下载
+
+推荐下载网站:
+
+* icomoon字库http://icomoon.io 
+  IcoMoon成立于2011年,推出了第一个自定义图标字体生成器,它允许用户选择所需要的图标,使它们成一字型。 该字库内容种类繁多,非常全面,唯-的遗憾 是国外服务器,打开网速较慢。
+* 阿里iconfont字库http://www.iconfont.cn/ 
+  这个是阿里妈妈M2UX的一个iconfont字体图标字库,包含了淘宝图标库和阿里妈妈图标库。可以使用Al制作图标上传生成。重点是，免费!
+
+![image-20200817170248058](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200817170248058.png)
+
+```html
+<style>
+/*字体声明*/ 
+@font-face {
+font- family: ' icomoon' ;
+src: ur1( ' fonts/ icomoon. eot?p4ssmb');
+src: ur1( 'fonts/ icomoon. eot ?p4ssmb#iefix') format( ' embedded-opentype'),
+url( ' fonts/ icomoon. ttf?p4ssmb') format( 'truetype' ),
+url( ' fonts/ icomoon. woff?p4ssmb' ) format( ' woff')，
+url( ' fonts/ icomoon. svg ?p4ssmb#icomoon') format('svg' );
+font-weight: normal;
+font-style: normal;
+font -display: block ;
+}
+</style>
+
+```
+
+![image-20200817171325092](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200817171325092.png)
 
 
 
