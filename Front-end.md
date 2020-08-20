@@ -4617,7 +4617,7 @@ overflow属性指定了如果内容溢出一个元素的框(超过其指定高�
 <style>
 /*字体声明*/ 
 @font-face {
-font- family: ' icomoon' ;
+font-family: ' icomoon' ;
 src: ur1( ' fonts/ icomoon. eot?p4ssmb');
 src: ur1( 'fonts/ icomoon. eot ?p4ssmb#iefix') format( ' embedded-opentype'),
 url( ' fonts/ icomoon. ttf?p4ssmb') format( 'truetype' ),
@@ -4625,13 +4625,385 @@ url( ' fonts/ icomoon. woff?p4ssmb' ) format( ' woff')，
 url( ' fonts/ icomoon. svg ?p4ssmb#icomoon') format('svg' );
 font-weight: normal;
 font-style: normal;
-font -display: block ;
+font-display: block ;
 }
 </style>
-
 ```
 
 ![image-20200817171325092](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200817171325092.png)
+
+
+
+#####字体图标的追加
+
+如果工作中,原来的字体图标不够用了, 我们需要添加新的字体图标到原来的字体文件中。
+
+把压缩包里面的selectionjson从新上传,然后选中自己想要新的图标,从新下载压缩包,并替换原来的文件即可。
+
+<img src="C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200819161139795.png" alt="image-20200819161139795" style="zoom: 67%;" />
+
+![image-20200819161248063](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200819161248063.png)
+
+
+
+#### CSS三角
+
+```html
+.box2 {
+     width: 0;
+     height: 0;
+     border: 10px solid transparent ;
+     border-top-color: pink;
+     margin: 100px auto;
+}
+```
+
+网页中常见一些三角形,使用CSS直接画出来就可以,不必做成图片或者字体图标。
+
+一张图,你就知道CSS三角是怎么来的了做法如下:
+
+![image-20200819162859368](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200819162859368.png)
+
+
+
+##### 实践案例：京东三角对话框
+
+```html
+<style>
+    .jd {
+        position: relative;
+        width: 120px;
+        height: 249px;
+        background-color: pink;
+    }
+    .jd span {
+        position: absolute;
+        right: 15px;
+        top: -10px;
+        width: 0;
+        height: 0;
+        /*为了照顾兼容性*/
+        line-height: 0;
+        font-size: 0;
+        border: 5px solid transparent;
+        border-bottom-color: pink;
+    }
+</style>
+<body>
+    <div class="jd">
+        <span></span>
+    </div>
+</body>
+```
+
+
+
+####CSS用户界面样式
+
+所谓的界面样式,就是更改一些用户操作样式,以便提高更好的用户体验。
+
+* 更改用户的鼠标样式
+* 表单轮廓
+* 防止表单域拖拽
+
+
+
+#####鼠标样式cursor
+
+```html
+li { cursor:pointer; }
+```
+
+设置或检索在对象上移动的鼠标指针采用何种系统预定义的光标形状。
+
+| 属性值      | 描述      |
+| ----------- | --------- |
+| default     | 小白 默认 |
+| pointer     | 小手      |
+| move        | 移动      |
+| text        | 文本      |
+| not-allowed | 禁止      |
+
+```html
+<ul>
+<li style=" cursor: default;">我是默认的小白鼠标样式</li>
+<li style=" cursor: pointer;">我是鼠标小手样式</li>
+<li style=" cursor: move; ">我是鼠标移动样式</1i>
+<li style="cursor: text;">我是鼠标文本样式</1i>
+<1i style=" cursor: not- allowed;">我是鼠标禁止样式</1i>
+</ul>
+
+```
+
+
+
+##### 轮廓线outline
+
+给表单添加outline: 0;或者outline: none;样式之后,就可以去掉默认的蓝色边框。
+
+```html
+input { outline:none; }
+```
+
+
+
+##### 防止拖拽文本域resize
+
+实际开发中,我们文本域右下角是不可以拖拽的。
+
+```html
+textarea { resize: none; }
+```
+
+![image-20200819171809964](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200819171809964.png)
+
+
+
+#### vertical-align属性应用
+
+CSS的vertical-align属性使用场景:经常用于设置图片或者表单(行内块元素)和文字垂直对齐。
+
+官方解释:用于设置一个元素的垂直对齐方式,但是它只针对于行内元素或者行内块元素有效。
+
+语法：
+
+```html
+vertical-align : baseline | top | middle | bottom;
+```
+
+| 值       | 描述                                   |
+| -------- | -------------------------------------- |
+| baseline | 默认，元素放置在父元素的基线上         |
+| top      | 把元素的顶端与行中最高元素的顶端对齐   |
+| middle   | 把此元素放置在父元素的中部             |
+| bottom   | 把元素的顶端与行中最低的元素的顶端对齐 |
+
+![image-20200819211242865](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200819211242865.png)
+
+![image-20200819211303069](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200819211303069.png)
+
+##### 解决图片底部默认空白缝隙问题
+
+![image-20200819211744013](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200819211744013.png)
+
+主要解决方法有两种:
+
+* 给图片添加vertical-align:middle | topl bottom等。(提倡使用的)
+* 把图片转换为块级元素display: block;
+
+
+
+#### 溢出的文字省略号显示
+
+##### 单行文本溢出
+
+必须满足三个条件：
+
+```css
+/*1.先强制一行内显示文本*/
+white - space: nowrap;(默认normal自动换行)
+/*2.超出的部分隐藏*/
+overflow: hidden;
+/*3.文字用省略号替代超出的部分*/
+text- -overflow: ellipsis;
+```
+
+##### 多行文本溢出
+
+多行文本溢出显示省略号,有较大兼容性问题，适合于webKit浏览器或移动端(移动端大部分是webkit内核)
+
+```css
+overflow: hidden;
+text-overflow: ellipsis;
+/*弹性伸缩盒子模型显示*/
+display: -webkit-box;
+/*限制在一个块元素显示的文本的行数*/
+-webkit-line-clamp: 2;
+/*设置或检索伸缩盒对象的子元素的排列方式*/
+-webkit-box-orient: vertical ;
+```
+
+更推荐让后台人员来做这个效果，因为后台人员可以设置显示多少个字,操作更简单。
+
+
+
+#### 常见布局技巧
+
+#####margin负值运用
+
+```css
+<style>
+  ul li {
+    float: left;
+    list-style: none ;
+    width: 150px;
+    height: 200px;
+    border: 1px solid red;
+    margin-left: -1px;
+}
+</style>
+```
+
+<img src="C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200819213433484.png" alt="image-20200819213433484" style="zoom:50%;" />
+
+* 让每个盒子margin往左侧移动-1px正好压住相邻盒子边框
+* 鼠标经过某个盒子的时候,提高当前盒子的层级即可(如果没有定位,则加相对定位(保留位置) , 如果有定位,则加z-index)
+
+```css
+ul li:hover {
+  position: relative;
+  border: 1px solid blue; 
+}
+/* 或者 */
+ul li:hover {
+/* 如果Li都有定位，则利用z-index提高层级*/
+  z-index: 1;
+  border: 1px solid blue;
+}
+```
+
+
+
+##### 文字围绕浮动元素
+
+![image-20200819224117276](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200819224117276.png)
+
+```html
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+   .box {
+       width: 300px;
+       height: 70px;
+       background-color: pink;
+       margin: 0 auto;
+       padding: 5px;
+    }
+   .pic {
+       float: left;
+       width: 120px;
+       height: 60px ;
+       margin-right: 5px;
+    }
+   .pic img {
+       width: 100%;
+    }
+</style>
+<body>
+    <div class="box">
+        <div>
+            <img src="images/img.png" alt="">
+        </div>
+        <p>
+          【集锦】热身赛-巴西0-1秘鲁
+        </p>
+    </div>
+</body>
+```
+
+
+
+##### 行内块巧妙运用
+
+![image-20200819230202325](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200819230202325.png)
+
+```html
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            text-align: center;
+        }
+        .box a {
+            display: inline-block ;
+            width: 36px;
+            height: 36px;
+            background-color:  #f7f7f7 ;
+            border: 1px solid #CCC; 
+            text-align: center;
+            line-height: 36px ;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+       .box .prev,
+       .box .next {
+            width: 85px ;
+        }
+       .box .current,
+       .box .elp {
+            width: 85px;
+        }
+       .box .current,
+       .box .elp {
+            background-color: #fff;
+            border: none;
+        }
+       .box input {
+            height: 36px;
+            width: 45px;
+            border: 1px solid #CCC;
+            outline: none;
+        }
+       .box button {
+            width: 60px;
+            height: 36px;
+            background-color:  #f7f7f7 ;
+            border: 1px solid #CCC; 
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+   <a href="#" class="prev">&lt;&lt;上一页</a>
+   <a href=" #”class="current">2</a>
+   <a href="#">3</a>
+   <a href="#">4</a>
+   <a href="#">5</a>
+   <a href="#">6</a>
+   <a href="#" class="elp">...</a>
+   <a href="#" class="next”>&gt;&gt;下一页</a>
+    到第
+    <input type="text">
+    页
+    <button>确定</button>
+</div>
+</body>
+
+```
+
+
+
+##### CSS三角强化
+
+![image-20200820092007026](C:\Users\CXY\AppData\Roaming\Typora\typora-user-images\image-20200820092007026.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
