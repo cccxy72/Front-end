@@ -278,6 +278,18 @@ var age;//声明一个名称为age的变量
 
 
 
+当声明新的变量时，可以使用关键字`new`来声明其类型。
+
+```js
+var carname=new String;
+var x=      new Number;
+var y=      new Boolean;
+var cars=   new Array;
+var person= new Object;
+```
+
+
+
 ##### 赋值
 
 ```js
@@ -719,29 +731,108 @@ console.log(typeof num);
 
 #### 数据类型的转换
 
+使用表单、prompt 获取过来的数据默认是字符串类型的,此时就不能直接简单的进行加法运算,而需要转换变量的数据类型。通俗来说,就是把一种数据类型的变量转换成另外一种数据类型。
+
+我们通常会实现3种方式的转换：
+
+* 转换为字符串类型
+* 转换为数字型
+* 转换为布尔型
+
+
+
+#####转换为字符串类型
+
+| 方式               | 说明                         | 案例                               |
+| ------------------ | ---------------------------- | ---------------------------------- |
+| toString()         | 转成字符串                   | var num=1; alert(num.toString);    |
+| String()强制转换   | 转成字符串                   | var num=1;alert(String(num));      |
+| **加号拼接字符串** | 和字符串拼接的结果都是字符串 | var num=1;alert(num+"我是字符串"); |
+
+```js
+//1.把数字型转换为字符串类型 变量.toString()
+var num = 10;
+var str = num.toString();
+console.log(str);
+console.log(typeof str);
+//2.我们利用String()
+console.log(Sting(num));
+//3.利用 + 拼接字符串的方法实现转换效果 隐式转换
+console.log(num+'');
+```
+
+* toString0和String(使用方式不一样。
+* 三种转换方式,我们更喜欢用第三种加号拼接字符串转换方式，这一种方式也称之 为隐式转换。
+
+
+
+#####转换为数字型（重点）
+
+| 方式                       | 说明                         | 案例                |
+| -------------------------- | ---------------------------- | ------------------- |
+| **parselnt(tring)函数**    | 将string类型转成整数数值型   | parselnt('78')      |
+| **parseFloat(string)函数** | 将string类型转成浮点数数值型 | parseFloat('78.21') |
+| Number()强制转换函数       | 将string类型转换为数值型     | Number('12')        |
+| js隐式转换(- * /)          | 利用算术运算隐式转换为数值型 | '12' - 0            |
+
+```js
+var age = prompt('请输入您的年龄');
+//1.parseInt(变量) 可以把字符型转换为数字型 得到是整数
+console.log(parseInt('3.14'));//3 取整
+console.log(parseInt('120px'));//120 会去掉单位
+console.log(parseInt('rem120px'));//NaN
+//2.parseFloat(变量) 可以把字符型转换为数字型 得到是浮点数
+console.log(parseFloat('3.14'));
+//3.利用Number(变量)
+var str = '123';
+console.log(Number(str));
+//4.利用了算术运算 - * / 隐式转换
+console.log('12'-0);//12
+console.log('123'-'120');//3
+```
+
+* 注意parselnt和parseFloat单词的大小写,这2个是重点
+* 隐式转换是我们在进行算数运算的时候, JS自动转换了数据类型
+
+
+
+##### 案例：计算年龄
+
+此案例要求在页面中弹出一个输入框,我们输入出生年份后，能计算出我们的年龄。
+
+* 弹出一个输入框( prompt) ,让用户输入出生年份( 用户输入)
+* 把用户输入的值用变量保存起来,然后用今年的年份减去变量值,结果就是现在的年龄( 程序内部处理)
+* 弹出警示框( alert)，把计算的结果输出( 输出结果)
+
+```js
+var year = prompt('请您输入您出生的年份');
+var age = 2020 - year;//year取过来是字符串类型 这里是隐式转换
+alert('您今年已经'+ age + '岁了');
+```
+
+
+
+##### 转换为布尔型
+
+| 方式          | 说明               | 案例             |
+| ------------- | ------------------ | ---------------- |
+| Boolean()函数 | 其他类型转成布尔值 | Boolean('true'); |
+
+* 代表空、否定的值会转换为false，如''、0、NaN、null、undefined
+* 其余值都会被转换为true
+
+```js
+console. log (Boolean(')); // false
+console. log (Boolean(0)); // false
+console. log (Boolean (NaN)); // false
+console. log (Boolean (nu1l)) ; // false
+console. log (Boolean (unde fined) ) ; // false
+console . log (Boolean('小陈')); // true
+console . log (Boolean(12)) ; // true
+```
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### JS对象
